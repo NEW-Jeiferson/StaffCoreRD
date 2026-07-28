@@ -1,0 +1,19 @@
+﻿@model Staff
+<h2>Eliminar empleado</h2>
+<div class="alert alert-warning">¿Estás seguro que deseas eliminar a este empleado? Esta acción no se puede deshacer.</div>
+<div class="card col-md-6">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Nombre</h5>
+        <p class="card-text">
+            <strong>Cédula:</strong> @Model.Cedula<br />
+            <strong>Cargo:</strong> @Model.Cargo<br />
+            <strong>Departamento:</strong> @Model.Departamento<br />
+            <strong>Salario:</strong> @Model.Salario.ToString("C")
+        </p>
+        <form asp-action="Delete" method="post">
+            <input asp-for="Id" type="hidden" />
+            <button type="submit" class="btn btn-danger">Confirmar eliminación</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

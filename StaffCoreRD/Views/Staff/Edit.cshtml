@@ -1,0 +1,42 @@
+﻿@model Staff
+<h2>Editar empleado</h2>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Edit" method="post" class="col-md-6">
+    <input asp-for="Id" type="hidden" />
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Cedula" class="form-label"></label>
+        <input asp-for="Cedula" class="form-control" />
+        <span asp-validation-for="Cedula" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Cargo" class="form-label"></label>
+        <input asp-for="Cargo" class="form-control" />
+        <span asp-validation-for="Cargo" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Departamento" class="form-label"></label>
+        <select asp-for="Departamento" class="form-select">
+            <option value="Tecnología">Tecnología</option>
+            <option value="Recursos Humanos">Recursos Humanos</option>
+            <option value="Finanzas">Finanzas</option>
+            <option value="Operaciones">Operaciones</option>
+        </select>
+        <span asp-validation-for="Departamento" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Salario" class="form-label"></label>
+        <input asp-for="Salario" class="form-control" />
+        <span asp-validation-for="Salario" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="FechaIngreso" class="form-label"></label>
+        <input asp-for="FechaIngreso" class="form-control" type="date" />
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
