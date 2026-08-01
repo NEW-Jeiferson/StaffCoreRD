@@ -1,10 +1,18 @@
 ﻿@model List<Staff>
 <h2>Personal Activo</h2>
 
-@if (User.IsInRole("Administrador") || User.IsInRole("RRHH"))
-{
-    <a asp-action="Create" class="btn btn-success mb-3">+ Nuevo</a>
-}
+<div class="d-flex gap-2 mb-3">
+    @if (User.IsInRole("Administrador") || User.IsInRole("RRHH"))
+    {
+        <a asp-action="Create" class="btn btn-success">+ Nuevo</a>
+    }
+    <a asp-action="Resumen" class="btn btn-outline-primary">Ver resumen por departamento</a>
+</div>
+
+<form method="get" class="mb-3">
+    <input type="text" name="busqueda" class="form-control" placeholder="Buscar por nombre..."
+           value="@ViewBag.Busqueda" onchange="this.form.submit()" />
+</form>
 
 @if (!Model.Any())
 {
@@ -31,6 +39,7 @@ else
                     <td>@s.Departamento</td>
                     <td>@s.Salario.ToString("C")</td>
                     <td>
+                        <a asp-action="Details" asp-route-id="@s.Id" class="btn btn-info btn-sm">Detalles</a>
                         @if (User.IsInRole("Administrador") || User.IsInRole("RRHH"))
                         {
                             <a asp-action="Edit" asp-route-id="@s.Id" class="btn btn-warning btn-sm">Editar</a>

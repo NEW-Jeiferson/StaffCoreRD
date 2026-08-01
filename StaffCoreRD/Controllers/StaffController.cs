@@ -17,14 +17,24 @@ namespace StaffCoreRD.Controllers
         }
 
         // GET: /Staff
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? busqueda)
         {
-            var personal = await _context.Personal
-                .Where(s => s.Activo)
-                .OrderBy(s => s.Nombre)
-                .ToListAsync();
+            var query = _context.Personal.Where(s => s.Activo);
 
+            if (!string.IsNullOrWhiteSpace(busqueda))
+                query = query.Where(s => s.Nombre.Contains(busqueda));
+
+            var personal = await query.OrderBy(s => s.Nombre).ToListAsync();
+            ViewBag.Busqueda = busqueda;
             return View(personal);
+        }
+
+        // GET: /Staff/Details/5
+        public async Task<IActionResult> Details(int id)
+        {
+            var staff = await _context.Personal.FindAsync(id);
+            if (staff == null) return NotFound();
+            return View(staff);
         }
 
         // GET: /Staff/Create
@@ -101,6 +111,23 @@ namespace StaffCoreRD.Controllers
 
             TempData["Exito"] = "Empleado eliminado exitosamente.";
             return RedirectToAction(nameof(Index));
+        }
+
+        // GET: /Staff/Resumen
+        public async Task<IActionResult> Resumen()
+        {
+            var resumen = await _context.Personal
+                .Where(s => s.Activo)
+                .GroupBy(s => s.Departamento)
+                .Select(g => new ResumenDepartamentoViewModel
+                {
+                    Departamento = g.Key,
+                    TotalEmpleados = g.Count(),
+                    TotalNomina = g.Sum(s => s.Salario)
+                })
+                .ToListAsync();
+
+            return View(resumen);
         }
     }
 }

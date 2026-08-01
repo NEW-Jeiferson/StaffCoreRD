@@ -1,0 +1,16 @@
+﻿@model Staff
+<h2>Perfil del empleado</h2>
+<div class="card col-md-6">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Nombre</h5>
+        <p class="card-text">
+            <strong>Cédula:</strong> @Model.Cedula<br />
+            <strong>Cargo:</strong> @Model.Cargo<br />
+            <strong>Departamento:</strong> @Model.Departamento<br />
+            <strong>Salario:</strong> @Model.Salario.ToString("C")<br />
+            <strong>Fecha de ingreso:</strong> @Model.FechaIngreso.ToShortDateString()<br />
+            <strong>Estado:</strong> @(Model.Activo ? "Activo" : "Inactivo")
+        </p>
+        <a asp-action="Index" class="btn btn-secondary">Volver</a>
+    </div>
+</div>

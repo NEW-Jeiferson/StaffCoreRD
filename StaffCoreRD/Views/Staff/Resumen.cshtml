@@ -1,0 +1,31 @@
+﻿@model List<ResumenDepartamentoViewModel>
+<h2>Resumen por Departamento</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No hay datos para mostrar.</div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Departamento</th>
+                <th>Total de Empleados</th>
+                <th>Total de Nómina</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model)
+            {
+                <tr>
+                    <td>@r.Departamento</td>
+                    <td>@r.TotalEmpleados</td>
+                    <td>@r.TotalNomina.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a asp-action="Index" class="btn btn-secondary">Volver</a>
