@@ -1,8 +1,11 @@
 # StaffCore RD
 
 **Nombre:** Jeiferson David Paez
+
 **Matrícula:** jp2024-0449
+
 **Materia:** ISW-311 Tecnologías de Internet I
+
 **Práctica:** Sistema de Gestión de Staff — StaffCore RD
 
 ## Repositorio
