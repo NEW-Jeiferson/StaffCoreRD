@@ -1,7 +1,7 @@
-﻿@model List<Staff>
+@model List<Staff>
 <h2>Personal Activo</h2>
 
-<div class="d-flex gap-2 mb-3">
+<div class="d-flex gap-2 mb-4">
     @if (User.IsInRole("Administrador") || User.IsInRole("RRHH"))
     {
         <a asp-action="Create" class="btn btn-success">+ Nuevo</a>
@@ -9,7 +9,7 @@
     <a asp-action="Resumen" class="btn btn-outline-primary">Ver resumen por departamento</a>
 </div>
 
-<form method="get" class="mb-3">
+<form method="get" class="mb-4">
     <input type="text" name="busqueda" class="form-control" placeholder="Buscar por nombre..."
            value="@ViewBag.Busqueda" onchange="this.form.submit()" />
 </form>
@@ -20,7 +20,8 @@
 }
 else
 {
-    <table class="table table-striped">
+    <div class="table-responsive shadow-sm bg-white mb-4">
+        <table class="table table-striped mb-0">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -59,4 +60,5 @@ else
             </tr>
         </tfoot>
     </table>
+    </div>
 }

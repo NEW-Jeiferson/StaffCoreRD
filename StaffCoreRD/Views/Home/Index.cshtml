@@ -1,8 +1,20 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Inicio";
+    if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        Context.Response.Redirect("/Staff");
+    }
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center mt-5">
+    <h1 class="display-3 fw-bold mb-3">StaffCore RD</h1>
+    <p class="lead text-muted mb-5">Sistema de gestión de personal</p>
+
+    @if (User.Identity == null || !User.Identity.IsAuthenticated)
+    {
+        <div class="d-flex justify-content-center gap-3">
+            <a asp-controller="Account" asp-action="Login" class="btn btn-primary btn-lg px-4">Iniciar sesión</a>
+            <a asp-controller="Account" asp-action="Register" class="btn btn-outline-primary btn-lg px-4">Registrarse</a>
+        </div>
+    }
 </div>
